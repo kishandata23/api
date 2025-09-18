@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from datetime import datetime, timedelta
 import uvicorn
@@ -7,17 +6,6 @@ import uvicorn
 
 router = APIRouter(prefix="/api/code", tags=["Code Projects"])
 
-origins = [
-    "http://localhost:3000"
-]
-# Configure CORS
-router.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 G_EXCEL_CSV_URL = 'https://docs.google.com/spreadsheets/d/1jWR62AXQeg6md4ATca-w2T82zZ88Mr1c5HcWty2vX3Y/export?format=csv'
 
