@@ -68,5 +68,6 @@ async def root():
 async def root():
     return {'API for project CODE':"kishandata.in/code"}
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+# local testing
+# if __name__ == "__main__":
+#     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
