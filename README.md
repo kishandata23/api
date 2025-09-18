@@ -18,3 +18,8 @@ run
 build to export as .tar.gz files
     
     uv build
+
+
+for vercel: pyproject.toml dependencies are not considered defaultly so create  requirements.txt
+
+    pip freeze > requirements.txt
