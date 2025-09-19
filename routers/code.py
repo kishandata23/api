@@ -11,20 +11,16 @@ G_EXCEL_CSV_URL = 'https://docs.google.com/spreadsheets/d/1jWR62AXQeg6md4ATca-w2
 
 @router.get('')
 async def root():
-    return {'API for project CODE':"kishandata.in/api/code",
-            "available_routes": [
-            "/problems/{date}",
-            "/recent-submissions",
-            "/problem-stats",
-            "/heatmap-data"
-        ]
+    return {
+        "message": "Welcome to the Project CODE API",
+        "base_url": "www.kishandata.in/api/code",
+        "status": "running"
             }
 
-
+@router.get("/data")
 def read_excel_data():
     df = pd.read_csv(G_EXCEL_CSV_URL)
-    df['Date'] = pd.to_datetime(df['Date'])
-    return df
+    return df.to_dict('records')
 
 @router.get("/problems/{date}")
 async def get_problems_by_date(date: str):
@@ -56,13 +52,3 @@ async def get_heatmap_data():
     df = read_excel_data()
     daily_counts = df.groupby(df['Date'].dt.date).size().to_dict()
     return daily_counts
-
-@router.get("/last7days")
-async def get_last_7_days_data():
-    df = read_excel_data()
-    today = datetime.today()  
-    seven_days_ago = today - timedelta(days=7)
-
-    filtered_df = df[(df['Date'] >= seven_days_ago) & (df['Date'] <= today)]
-    return filtered_df
-
