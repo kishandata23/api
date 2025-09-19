@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import uvicorn
 
 
-router = APIRouter(prefix="/api/code", tags=["Code Projects"])
+router = APIRouter(prefix="/code", tags=["Code Projects"])
 
 
 G_EXCEL_CSV_URL = 'https://docs.google.com/spreadsheets/d/1jWR62AXQeg6md4ATca-w2T82zZ88Mr1c5HcWty2vX3Y/export?format=csv'
@@ -13,7 +13,7 @@ G_EXCEL_CSV_URL = 'https://docs.google.com/spreadsheets/d/1jWR62AXQeg6md4ATca-w2
 async def root():
     return {
         "message": "Welcome to the Project CODE API",
-        "base_url": "www.kishandata.in/api/code",
+        "base_url": "www.kishandata.in/code",
         "status": "running"
             }
 
