@@ -57,5 +57,12 @@ async def get_heatmap_data():
     daily_counts = df.groupby(df['Date'].dt.date).size().to_dict()
     return daily_counts
 
+@router.get("/last7days")
+async def get_last_7_days_data():
+    df = read_excel_data()
+    today = datetime.today()  
+    seven_days_ago = today - timedelta(days=7)
 
+    filtered_df = df[(df['Date'] >= seven_days_ago) & (df['Date'] <= today)]
+    return filtered_df
 
